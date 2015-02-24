@@ -1,1 +1,16 @@
-<%= @products %>
+<% if @products.length > 0 %>
+<section id="search-results">
+	<h2>Search results for <%= @search %></h2>
+	<ul>
+
+		<% @products.each do |p| %>
+		<li>
+			<div class="product-title"><%= p['name'] %></div>
+			<img src="<%= p['image']['url'] %>" alt="Smiley face">
+			<hr>	
+		</li>
+		<% end %>
+
+	</ul>
+</section>
+<% end %>
