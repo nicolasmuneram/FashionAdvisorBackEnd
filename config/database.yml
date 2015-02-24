@@ -17,7 +17,7 @@ default: &default
   password: Ni940101
   host: localhost
 
-∑
+
 
 development:
   <<: *default
