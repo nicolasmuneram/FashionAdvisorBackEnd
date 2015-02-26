@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       	success: true,
       	user: user
       }
-      redirect_to '/'
+      #redirect_to '/'
     else
     # If user's login doesn't work, send them back to the login form.
       redirect_to '/login'
