@@ -1,5 +1,6 @@
 require 'shopsense'	
 class ProductsController < ApplicationController
+    before_filter :authorize
 
 	def index
 		@products = []
