@@ -1,28 +1,13 @@
-== README
+== Fashion Advisor Backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This will be the backend of the Fashion Advisor App, developed by:
 
-Things you may want to cover:
+* Daniel Klinkert Houfer
 
-* Ruby version
+* Daniel Lopera Restrepo
 
-* System dependencies
+* Nicolás Múnera Mejía
 
-* Configuration
+* David Romero Millán
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+The Backend side of the Fashion Advisor App will be developed in Ruby using the Ruby on Rails Framework.
