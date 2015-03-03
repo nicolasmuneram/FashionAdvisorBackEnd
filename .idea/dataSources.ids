@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Rails FashionAdvisor: development" uuid="82e13001-4024-483a-8813-c717091b1b70">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails FashionAdvisor: test" uuid="0246b5a6-f2d1-4e71-9713-9a44d6239c7b">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails FashionAdvisor: production" uuid="ed060148-bb62-4157-ac13-73dbb6211286">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>

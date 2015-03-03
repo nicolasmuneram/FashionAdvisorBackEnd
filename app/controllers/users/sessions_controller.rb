@@ -5,12 +5,12 @@ class Users::SessionsController < Devise::SessionsController
     resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)
-    render :json => {:response => 'ok', :auth_token => current_user.authentication_token }.to_json, :status => :ok
+    render json: {response: 'Login succesful', auth_token: current_user.authentication_token}
   end
 
   # When called, it means that the login has failed.
   def failure
-     render json: {success: false, errors: "Login failed!"}
+     render json: {response: false, auth_token: nil}
   end
 
   
