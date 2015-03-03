@@ -6,5 +6,6 @@ class AddDeviseColumnsToUser < ActiveRecord::Migration
   end
   def self.down
     t.remove :authentication_token
+    drop_table(:users)
   end
 end
