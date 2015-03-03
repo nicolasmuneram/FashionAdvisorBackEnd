@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions' }
 
   # You can have the root of your site routed with "root"
-  root 'products#index'
-  get 'search/:id' => 'products#index'
+  root 'products#search'
+  get 'search/:id' => 'products#search'
  
 
 end
