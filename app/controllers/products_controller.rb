@@ -23,6 +23,10 @@ class ProductsController < ApplicationController
             end
             @search = params[:id]
         end 
-        render :json => {:products => @products, :auth_token => current_user.authentication_token }.to_json, :status => :ok
+        respond_to do |format|
+          format.html { render "index" }
+          format.json { render :json => {:products => @products, :auth_token => current_user.authentication_token }.to_json, :status => :ok }
+        end
+        
 	end
 end
