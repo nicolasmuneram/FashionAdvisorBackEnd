@@ -7,10 +7,10 @@ class ProductsController < ApplicationController
 	def search
 		@products = []
 
-        if params[:id]
+        if params[:search_param]
 
             client = Shopsense::API.new({'partner_id' => 'uid9921-26902161-26'})
-            response = client.search(params[:id], 0, params[:num_results]||=10)
+            response = client.search(params[:search_param], 0, params[:num_results]||=10)
             raw_products = JSON.parse(response)["products"]
             @products = raw_products.map! do |p|
                 image = p["images"].select { |i| i["sizeName"] == 'Large' }.pop
@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
                           }
                 Product.create(product) if (!Product.exists?(p["id"].to_i))
             end
-            @search = params[:id]
+            @search = params[:search_param]
         end
 
     @products = searchById(471845271)

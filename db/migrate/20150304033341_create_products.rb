@@ -10,7 +10,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string :retailer
       t.string :brand_name
       t.string :color
-      t.primary_key :id
+      t.primary_key :search_param
 
       t.timestamps null: false
     end
