@@ -3,14 +3,51 @@ class Users::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+   def new
+
+     build_resource({})
+
+
+     @validatable = devise_mapping.validatable?
+     if @validatable
+       @minimum_password_length = resource_class.password_length.min
+     end
+     respond_with self.resource
+   end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+   def create
+     build_resource(sign_up_params)
+     puts params
+     resource_saved = resource.save
+     yield resource if block_given?
+     if resource_saved
+       if resource.active_for_authentication?
+         set_flash_message :notice, :signed_up if is_flashing_format?
+         sign_up(resource_name, resource)
+         render json: {
+                    response: 'Registration succesful',
+                    auth_token: current_user.authentication_token,
+                    email: resource.email
+                }
+       else
+         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
+         expire_data_after_sign_in!
+         respond_with resource, location: after_inactive_sign_up_path_for(resource)
+       end
+     else
+       clean_up_passwords resource
+       @validatable = devise_mapping.validatable?
+       if @validatable
+         @minimum_password_length = resource_class.password_length.min
+       end
+       render json: {
+                  response: resource.errors,
+                  auth_token: nil,
+                  email: nil
+              }
+     end
+   end
 
   # GET /resource/edit
   # def edit
