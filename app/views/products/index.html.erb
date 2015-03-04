@@ -5,7 +5,7 @@
 		<% @products.each do |p| %>
 		<li>
 			<div class="product-title"><%= p['name'] %></div>
-			<img src="<%= p['image']['url'] %>" alt="Smiley face">
+			<img src="<%= p['image_url'] %>" alt="Smiley face">
 			<div><%= p['description'].html_safe %></div>
 			<p><%= p['price'] %></p>
 			<a href="<%= p['url'] %>">Buy me now pls.</a>

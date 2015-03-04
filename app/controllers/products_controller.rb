@@ -22,15 +22,15 @@ class ProductsController < ApplicationController
                             'price' => p["priceLabel"],
                             'retailer_url' => p["url"],
                             'brand_name' => p["brandName"],
-                            'color' => p["colors"][0]["name"],
                             'retailer' => p["retailer"]
                           }
-                Product.create(product) if (!Product.exists?(p["id"].to_i))
+                #Product.create(product) if (!Product.exists?(p["id"].to_i))
+                product
             end
             @search = params[:search_param]
         end
 
-    @products = searchById(471845271)
+    #@products = searchById(471845271)
 
     respond_to do |format|
           format.html { render "index" }
@@ -50,7 +50,6 @@ class ProductsController < ApplicationController
         'price' => p["priceLabel"],
         'retailer_url' => p["url"],
         'brand_name' => p["brandName"],
-        'color' => p["colors"][0]["name"],
         'retailer' => p["retailer"]["name"]
     }
   end
