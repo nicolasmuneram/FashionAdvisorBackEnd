@@ -3,12 +3,9 @@ require 'shopsense'
 class ProductsController < ApplicationController
     before_action :authenticate_user!
 
-
 	def search
 		@products = []
-
         if params[:search_param]
-
             client = Shopsense::API.new({'partner_id' => 'uid9921-26902161-26'})
             response = client.search(params[:search_param], 0, params[:num_results]||=10)
             raw_products = JSON.parse(response)["products"]
@@ -22,9 +19,17 @@ class ProductsController < ApplicationController
                             'price' => p["priceLabel"],
                             'retailer_url' => p["url"],
                             'brand_name' => p["brandName"],
-                            'retailer' => p["retailer"]
+                            'retailer' => p["retailer"],
+                            'in_wardrobe' => false
                           }
-                #Product.create(product) if (!Product.exists?(p["id"].to_i))
+                if (!Product.exists?(p["id"].to_i))
+                  Product.create(id:p["id"].to_i)
+                end
+
+                if(current_user.products.any?{|element| element.id == p["id"].to_i})
+                  product["in_wardrobe"] = true
+                end
+
                 product
             end
             @search = params[:search_param]
@@ -52,6 +57,16 @@ class ProductsController < ApplicationController
         'brand_name' => p["brandName"],
         'retailer' => p["retailer"]["name"]
     }
+  end
+
+  def addProductToWardrobe()
+    if(current_user.products.find_by_id(params[:product_id]) == nil)
+      current_user.products << Product.find(params[:product_id])
+      product = searchById(params[:product_id])
+      render json: {response: "Product added to wardrobe", product: product}
+    else
+      render json: {response: "Sorry, this item is already in your wardrobe!", product: product}
+    end
   end
 
 end
