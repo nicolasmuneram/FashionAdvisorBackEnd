@@ -84,8 +84,9 @@ class ProductsController < ApplicationController
   def bring_products_from_wardrobe()
     wardrobe_products = []
     current_user.products.each do |product|
-        wardrobe_products << product.id
+        wardrobe_products << search_by_id(product.id)
     end
+
     render json: {response: "Wardrobe items", wardrobe_products: wardrobe_products}
   end
 

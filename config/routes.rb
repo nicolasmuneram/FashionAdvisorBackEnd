@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   get 'search/:search_param' => 'products#search'
 
-  get 'user/wardrobe' => 'products#bring_products_from_wardrobe'
+  get 'user/products' => 'products#bring_products_from_wardrobe'
 
   post 'user/products' => 'products#add_product_to_wardrobe'
 
