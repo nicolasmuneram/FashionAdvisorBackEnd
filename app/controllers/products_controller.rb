@@ -4,8 +4,9 @@ class ProductsController < ApplicationController
   include ShopStyleApiHelper
   before_action :authenticate_user!
 
-  
+
   # GET '/search/:search_param'
+  # This method uses the Shopsense API to search products in their DB by their name, and renders the products in JSON format
   def search
     @products = []
     if params[:search_param]
@@ -30,6 +31,7 @@ class ProductsController < ApplicationController
 
 
   # POST 'user/products'
+  # Adds a specific product to the current users wardrobe
   def add_product_to_wardrobe()
     if current_user.products.find_by_id(params[:product_id]) == nil
 
@@ -45,6 +47,7 @@ class ProductsController < ApplicationController
   end
 
   # GET 'user/products'
+  #Brings the current users wardrobe products and returns the array of products in a JSON format
   def bring_products_from_wardrobe()
     wardrobe_products = []
     current_user.products.each do |product|
