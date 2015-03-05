@@ -10,4 +10,6 @@ This will be the backend of the Fashion Advisor App, developed by:
 
 * David Romero Millán
 
+* Santiago Zubieta Ortíz
+
 The Backend side of the Fashion Advisor App will be developed in Ruby using the Ruby on Rails Framework.
