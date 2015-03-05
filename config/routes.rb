@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'products#search'
   get 'search/:search_param' => 'products#search'
-
+  get 'user/wardrobe' => 'products#bringProductsFromWardrobe'
   post 'user/products' => 'products#addProductToWardrobe'
 
 end

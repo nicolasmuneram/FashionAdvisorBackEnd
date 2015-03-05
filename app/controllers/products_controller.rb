@@ -69,5 +69,13 @@ class ProductsController < ApplicationController
     end
   end
 
+  def bringProductsFromWardrobe()
+    wardrobeProducts = []
+    current_user.products.each do |product|
+        wardrobeProducts << product.id
+    end
+    render json: {response: "Wardrobe items", wardrobe_products: wardrobeProducts}
+  end
+
 end
 
