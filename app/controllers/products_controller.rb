@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   include ShopStyleApiHelper
   before_action :authenticate_user!
 
-  
+
   # GET '/search/:search_param'
   def search
     @products = []
@@ -18,11 +18,9 @@ class ProductsController < ApplicationController
 
       format_products_hash(raw_products, current_user)
 
-      @search = params[:search_param]
 
     end
-
-    render json: { products: @products, auth_token: current_user.authentication_token }
+    render json: { status: 0, data: {products: raw_products} }
   end
 
 
@@ -36,10 +34,10 @@ class ProductsController < ApplicationController
       current_user.products << Product.find(params[:product_id])
       product = search_by_id(params[:product_id])
 
-      render json: {response: "Product added to wardrobe", product: product}
+      render json: {status: 0, data: {product: product}}
     else
 
-      render json: {response: "Sorry, this item is already in your wardrobe!", product: product}
+      render json: {status: 1, data: nil}
     end
 
   end
@@ -51,7 +49,7 @@ class ProductsController < ApplicationController
         wardrobe_products << search_by_id(product.id)
     end
 
-    render json: {response: "Wardrobe items", wardrobe_products: wardrobe_products}
+    render json: {status: 0, data:{wardrobe_products: wardrobe_products}}
   end
 
 
