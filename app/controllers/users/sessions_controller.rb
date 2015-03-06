@@ -1,7 +1,10 @@
 class Users::SessionsController < Devise::SessionsController
+  skip_before_filter :verify_signed_out_user
+  protect_from_forgery with: :null_session
 
   # POST /resource/sign_in
   # This request creates the session when a user tries to login, if it fails it redirects to the failure method.
+  # {"user":{"email":"mail@mail.com","password":"12345678"}}
   def create
     resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
     set_flash_message(:notice, :signed_in) if is_navigational_format?
@@ -17,9 +20,9 @@ class Users::SessionsController < Devise::SessionsController
   # DELETE /users/sign_out
   # Destroys the session of the current user.
   def destroy
+
     signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
-    set_flash_message :notice, :signed_out if signed_out && is_flashing_format?
-    yield if block_given?
+
     render json: {status:0, data: nil}
   end
 

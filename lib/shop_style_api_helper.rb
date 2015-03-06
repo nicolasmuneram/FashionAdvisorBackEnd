@@ -4,15 +4,16 @@ module ShopStyleApiHelper
   # @param [Integer] id The id of the product wanted to fetch.
   # @return [Hash] Hash of the product information.
   def search_by_id(id)
-    p = JSON.parse(Net::HTTP.get(URI.parse('http://api.shopstyle.com/api/v2/products/#{id}?pid=uid9921-26902161-26')))
+    p = JSON.parse(Net::HTTP.get(URI.parse("http://api.shopstyle.com/api/v2/products/#{id}?pid=uid9921-26902161-26")))
+    puts p
     {
         id: p['id'].to_i,
         name: p['name'],
         image_url: p['image']['sizes']['Large']['url'],
         description: p['description'],
         price: p['priceLabel'],
-        retailer_url: p['url'],
-        brand_name: p['brandName'],
+        retailer_url: p['clickUrl'],
+        brand_name: p['brand']['name'],
         retailer: p['retailer']['name']
     }
   end

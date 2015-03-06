@@ -4,6 +4,7 @@ class CreateProductsUsersJoin < ActiveRecord::Migration
 
       t.integer "product_id"
       t.integer "user_id"
+      t.timestamps
 
     end
     add_index :products_users, ["product_id", "user_id"]

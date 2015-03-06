@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   root 'products#search'
 
   get 'search/:search_param' => 'products#search'
+  get 'search/' => 'products#search'
+
 
   get 'user/products' => 'products#bring_products_from_wardrobe'
 

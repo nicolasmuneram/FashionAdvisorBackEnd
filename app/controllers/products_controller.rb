@@ -45,10 +45,10 @@ class ProductsController < ApplicationController
   end
 
   # GET 'user/products'
-  #Brings the current users wardrobe products and returns the array of products in a JSON format
+  # Brings the current users wardrobe products and returns the array of products in a JSON format
   def bring_products_from_wardrobe()
     wardrobe_products = []
-    current_user.products.each do |product|
+    current_user.products.order(:created_at => 'ASC').each do |product|
         wardrobe_products << search_by_id(product.id)
     end
 
