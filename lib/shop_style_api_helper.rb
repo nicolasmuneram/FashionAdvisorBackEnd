@@ -6,16 +6,22 @@ module ShopStyleApiHelper
   def search_by_id(id)
     p = JSON.parse(Net::HTTP.get(URI.parse("http://api.shopstyle.com/api/v2/products/#{id}?pid=uid9921-26902161-26")))
     puts p
-    {
+    products = {
         id: p['id'].to_i,
         name: p['name'],
         image_url: p['image']['sizes']['Large']['url'],
         description: p['description'],
         price: p['priceLabel'],
         retailer_url: p['clickUrl'],
-        brand_name: p['brand']['name'],
         retailer: p['retailer']['name']
     }
+
+    if(p['brand'] != nil)
+      products['brand_name'] = p['brand']['name']
+    else
+      products['brand_name'] = nil
+    end
+    products
   end
 
   # This method formats the hash that is returned from the ShopStyle API, adds a field
