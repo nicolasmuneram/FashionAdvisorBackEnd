@@ -1,6 +1,8 @@
 class Users::SessionsController < Devise::SessionsController
-  skip_before_filter :verify_signed_out_user
+
+  skip_before_filter :verify_signed_out_user, only: :destroy
   protect_from_forgery with: :null_session
+
 
   # POST /resource/sign_in
   # This request creates the session when a user tries to login, if it fails it redirects to the failure method.
@@ -20,13 +22,13 @@ class Users::SessionsController < Devise::SessionsController
   # DELETE /users/sign_out
   # Destroys the session of the current user.
   def destroy
-
+    current_user.authentication_token = nil
     signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
 
     render json: {status:0, data: nil}
   end
 
-  
+
 
 
 end
