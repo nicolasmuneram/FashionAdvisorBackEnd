@@ -10,6 +10,4 @@ class Product < ActiveRecord::Base
       super('id' => product_id)
     end
   end
-
-
 end
