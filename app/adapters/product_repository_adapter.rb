@@ -13,7 +13,6 @@ class ProductRepositoryAdapter
   
   def search_product_details(product_id)
     p = JSON.parse(Net::HTTP.get(URI.parse("http://api.shopstyle.com/api/v2/products/#{product_id}?pid=uid9921-26902161-26")))
-    puts p
     products = {
         id: p['id'].to_i,
         name: p['name'],

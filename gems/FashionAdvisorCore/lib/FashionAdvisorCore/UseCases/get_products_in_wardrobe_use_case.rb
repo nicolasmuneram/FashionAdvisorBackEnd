@@ -1,7 +1,7 @@
 require 'FashionAdvisorCore/UseCases/base/use_case'
 module FashionAdvisorCore
   module UseCases
-    class ViewProductsInWardrobeUseCase < UseCase
+    class GetProductsInWardrobeUseCase < UseCase
 
       attr_accessor :data,:user_repo,:product_repo
 

@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
   # GET 'user/products'
   # Brings the current users wardrobe products and returns the array of products in a JSON format
   def bring_products_from_wardrobe
-    wardrobe_products = FashionAdvisorCore::view_products_in_wardrobe(current_user.id)
+    wardrobe_products = FashionAdvisorCore::get_products_in_wardrobe(current_user.id)
     if wardrobe_products != nil
       render json: {status: 0, data:{wardrobe_products: wardrobe_products}}
     else

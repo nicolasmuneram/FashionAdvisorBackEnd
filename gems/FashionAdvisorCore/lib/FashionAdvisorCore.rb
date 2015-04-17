@@ -3,7 +3,7 @@ require 'FashionAdvisorCore/Entities/product'
 require 'FashionAdvisorCore/Entities/user'
 require 'FashionAdvisorCore/Repositories/repository'
 require 'FashionAdvisorCore/UseCases/add_product_to_wardrobe_use_case'
-require 'FashionAdvisorCore/UseCases/view_products_in_wardrobe_use_case'
+require 'FashionAdvisorCore/UseCases/get_products_in_wardrobe_use_case'
 require 'FashionAdvisorCore/UseCases/search_products_use_case'
 
 module FashionAdvisorCore
@@ -25,9 +25,9 @@ module FashionAdvisorCore
       use_case.execute
     end
 
-    def view_products_in_wardrobe(user_id)
+    def get_products_in_wardrobe(user_id)
       data = {'user_id' => user_id}
-      use_case = UseCases::ViewProductsInWardrobeUseCase.new(data,Repositories::Repository.for(:product),Repositories::Repository.for(:user))
+      use_case = UseCases::GetProductsInWardrobeUseCase.new(data,Repositories::Repository.for(:product),Repositories::Repository.for(:user))
       use_case.execute
     end
   end
