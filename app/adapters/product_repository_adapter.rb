@@ -8,6 +8,14 @@ class ProductRepositoryAdapter
     client = Shopsense::API.new({'partner_id' => 'uid9921-26902161-26'})
     response = client.search(search_term, 0, 10)
     raw_products = JSON.parse(response)["products"]
+    raw_products.each { |raw_product|
+      if(!Product.find_by_id(raw_product['id']))
+        product = Product.new()
+        product.id = raw_product['id']
+        product.save()
+      end
+
+    }
     raw_products
   end
   
